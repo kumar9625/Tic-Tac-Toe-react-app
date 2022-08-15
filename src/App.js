@@ -3,7 +3,7 @@ import Icon from "./Components/Icons";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Footer from "./Components/Footer";
 import { Card, CardBody, Container, Button, Col, Row } from "reactstrap";
 import 'bootstrap/dist/css/bootstrap.css'
 import "./App.css";
@@ -32,14 +32,9 @@ const App = () => {
       }
       return true;
     }
-    if (
-      
-      isfull()
-    ) {
-      setWinmsg("Match Tied!")
-    }
-    
-    else if (itemArray[0] !== "empty" && itemArray[0] === itemArray[1] && itemArray[1] === itemArray[2]) {
+
+
+    if (itemArray[0] !== "empty" && itemArray[0] === itemArray[1] && itemArray[1] === itemArray[2]) {
       setWinmsg(`${itemArray[0]} Won The Game!`);
     } else if (itemArray[3] !== "empty" && itemArray[3] === itemArray[4] && itemArray[4] === itemArray[5]) {
       setWinmsg(`${itemArray[3]} Won The Game!`);
@@ -77,8 +72,13 @@ const App = () => {
       itemArray[4] === itemArray[6]
     ) {
       setWinmsg(`${itemArray[2]} won`);
-    } 
+    }
+    else if (
 
+      isfull()
+    ) {
+      setWinmsg("Match Tied!")
+    }
 
 
 
@@ -101,8 +101,8 @@ const App = () => {
   };
 
   return (
-    <Container className="p-5">
-      <ToastContainer position="bottom-center" />
+    <Container  fluid>
+      <ToastContainer  position="bottom-center" />
       <Row>
         <Col md={6} className="offset-md-3">
           {winmsg ? (
@@ -117,9 +117,15 @@ const App = () => {
 
             </div>
           ) : (
-            <h1 className="text-center text-warning">
-              {isCross ? "Cross" : "Circle"} turns
-            </h1>
+            <Container fluid>
+              <h1 className="text-center text-success">
+                TIC-TAC-TOE
+              </h1>
+              <h1 className="text-center text-warning">
+                {isCross ? "Cross" : "Circle"} turns
+              </h1>
+            </Container>
+
           )}
           <div className="grid">
             {itemArray.map((item, index) => (
@@ -133,6 +139,7 @@ const App = () => {
           </div>
         </Col>
       </Row>
+      <Footer />
     </Container>
 
 
